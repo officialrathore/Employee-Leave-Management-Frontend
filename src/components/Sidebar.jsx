@@ -91,11 +91,17 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:relative top-0 left-0 min-h-screen h-screen w-64 bg-linear-to-b from-slate-800 to-slate-900 text-white flex flex-col shadow-2xl transition-transform duration-300 z-40 overflow-y-auto ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        className={`fixed lg:relative top-0 left-0 h-full w-64 bg-linear-to-b from-slate-800 to-slate-900 text-white flex flex-col shadow-2xl transition-transform duration-300 z-40 overflow-y-auto ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
       >
         {/* Logo */}
-        <div className="p-6 border-b border-slate-700 ">
+        <div className="p-6 border-b border-slate-700 relative">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-4 right-4 p-1 text-slate-400 hover:text-white lg:hidden"
+          >
+            <FaTimes size={16} />
+          </button>
           <h1 className="text-2xl font-bold text-blue-400">LeaveHub</h1>
           <p className="text-slate-400 text-xs mt-1">Employee Leave Management</p>
         </div>
