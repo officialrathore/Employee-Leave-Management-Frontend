@@ -93,7 +93,7 @@ const ApproveRequests = () => {
               requests.map((leave) => (
                 <div
                   key={leave._id}
-                  className="border rounded-xl p-6 shadow-md bg-white hover:shadow-lg transition-all h-full flex flex-col justify-between"
+                  className="border rounded-xl p-6 shadow-md bg-white hover:shadow-lg transition-all h-[300px] flex flex-col justify-between"
                 >
                   <div className="flex items-center justify-between mb-4">
                     <div>
