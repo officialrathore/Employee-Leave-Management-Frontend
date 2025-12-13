@@ -91,7 +91,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:relative top-0 left-0 h-screen w-64 bg-linear-to-b from-slate-800 to-slate-900 text-white flex flex-col shadow-2xl transition-transform duration-300 z-40 ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        className={`fixed lg:relative top-0 left-0 min-h-screen h-screen w-64 bg-linear-to-b from-slate-800 to-slate-900 text-white flex flex-col shadow-2xl transition-transform duration-300 z-40 overflow-y-auto ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
       >
         {/* Logo */}
@@ -185,7 +185,7 @@ const Sidebar = () => {
       {/* Mobile Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-30 lg:hidden"
           onClick={() => setIsOpen(false)}
         ></div>
       )}
