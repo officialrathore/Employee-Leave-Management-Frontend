@@ -189,11 +189,12 @@ const Sidebar = () => {
       )}
 
       {/* Mobile Overlay */}
-      {isOpen && (
+      {isOpen && !showLogoutModal &&  (
         <div
-          className="fixed inset-0 backdrop-blur-md bg-opacity-30 z-30 lg:hidden"
-          onClick={() => setIsOpen(false)}
-        ></div>
+  className="fixed inset-0 bg-black/30 backdrop-blur-xs z-30 lg:hidden"
+  onClick={() => setIsOpen(false)}
+></div>
+
       )}
     </>
   );
