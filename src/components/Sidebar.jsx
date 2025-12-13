@@ -91,7 +91,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:relative top-0 left-0 h-full w-64 bg-linear-to-b from-slate-800 to-slate-900 text-white flex flex-col shadow-2xl transition-transform duration-300 z-40 overflow-y-auto ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        className={`fixed lg:relative top-0 left-0 h-screen min-h-screen w-64 bg-linear-to-b from-slate-800 to-slate-900 text-white flex flex-col shadow-2xl transition-transform duration-300 z-40 overflow-y-auto ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
       >
         {/* Logo */}
