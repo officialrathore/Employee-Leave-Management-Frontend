@@ -91,7 +91,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:relative top-0 left-0 h-screen min-h-screen w-64 bg-linear-to-b from-slate-800 to-slate-900 text-white flex flex-col shadow-2xl transition-transform duration-300 z-40 overflow-y-auto ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        className={`fixed lg:relative top-0 left-0 h-[100dvh] w-64 bg-linear-to-b from-slate-800 to-slate-900 text-white flex flex-col shadow-2xl transition-transform duration-300 z-40 overflow-y-auto ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
           }`}
       >
         {/* Logo */}
@@ -162,7 +162,7 @@ const Sidebar = () => {
 
       {/* Logout Confirmation Modal */}
       {showLogoutModal && (
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-md z-50 flex items-center justify-center">
+        <div className="fixed h-[100dvh] bg-black/30 backdrop-blur-md z-50 flex items-center justify-center">
           <div className="bg-white rounded-lg shadow-2xl p-6 max-w-sm mx-4">
             <h3 className="text-xl font-bold text-gray-800 mb-2">Confirm Logout</h3>
             <p className="text-gray-600 mb-6">Are you sure you want to logout?</p>
@@ -191,7 +191,7 @@ const Sidebar = () => {
       {/* Mobile Overlay */}
       {isOpen && !showLogoutModal &&  (
         <div
-  className="fixed inset-0 bg-black/30 backdrop-blur-xs z-30 lg:hidden"
+  className="fixed h-[100dvh] bg-black/30 backdrop-blur-xs z-30 lg:hidden"
   onClick={() => setIsOpen(false)}
 ></div>
 
