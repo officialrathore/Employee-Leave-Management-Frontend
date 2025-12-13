@@ -14,11 +14,20 @@ const ApproveRequests = () => {
   const [commentModal, setCommentModal] = useState({ show: false, leaveId: null, action: null });
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadData = async () => {
-      const res = await getAllLeaves();
-      setRequests(res);
+      try {
+        const res = await getAllLeaves();
+        setRequests(res);
+      } catch (err) {
+        console.error("Error fetching leave requests:", err);
+        setError("Failed to fetch leave requests. Try again later.");
+      } finally {
+        setInitialLoading(false);
+      }
     };
     loadData();
   }, []);
@@ -67,8 +76,17 @@ const handleAction = async () => {
           <p className="text-gray-600">Review and approve/reject employee leave requests</p>
         </div>
 
-        <div className="space-y-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {requests.length > 0 ? (
+        {initialLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-500"></div>
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <p className="text-red-500 text-lg">{error}</p>
+          </div>
+        ) : (
+          <div className="space-y-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {requests.length > 0 ? (
             requests.map((leave) => (
               <div
                 key={leave._id}
@@ -156,6 +174,7 @@ const handleAction = async () => {
             </div>
           )}
         </div>
+        )}
       </div>
 
       {/* Comment Modal */}
