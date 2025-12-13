@@ -23,7 +23,6 @@ const LeaveHistory = () => {
     fetchLeaves();
   }, []);
 
-  // Calculate stats
   const stats = {
     total: leaves.length,
     approved: leaves.filter((l) => l.status === "approved").length,
@@ -31,20 +30,20 @@ const LeaveHistory = () => {
     rejected: leaves.filter((l) => l.status === "rejected").length,
   };
 
-  // Filter leaves
   const filteredLeaves = leaves.filter((leave) => {
     const matchesStatus =
       filterStatus === "all" || leave.status === filterStatus;
     const matchesSearch =
       leave.leaveType.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      new Date(leave.startDate).toLocaleDateString("en-IN").includes(searchTerm);
+      new Date(leave.startDate)
+        .toLocaleDateString("en-IN")
+        .includes(searchTerm);
     return matchesStatus && matchesSearch;
   });
 
   return (
     <div className="w-full h-screen bg-gray-50 overflow-y-auto">
       <div className="p-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">
             My Leave History
@@ -60,7 +59,6 @@ const LeaveHistory = () => {
           </div>
         ) : (
           <>
-            {/* Stats Cards */}
             {leaves.length > 0 && (
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                 <StatCard title="Total" value={stats.total} color="blue" />
@@ -78,10 +76,8 @@ const LeaveHistory = () => {
               </div>
             )}
 
-            {/* Filter & Search Bar */}
             <div className="bg-white p-6 rounded-lg shadow-md mb-8">
               <div className="flex flex-col sm:flex-row gap-4">
-                {/* Search */}
                 <div className="flex-1">
                   <input
                     type="text"
@@ -92,7 +88,6 @@ const LeaveHistory = () => {
                   />
                 </div>
 
-                {/* Filter Button */}
                 <div className="flex items-center gap-2">
                   <FaFilter className="text-gray-600" />
                   <select
@@ -109,7 +104,6 @@ const LeaveHistory = () => {
               </div>
             </div>
 
-            {/* Leave Cards */}
             {filteredLeaves.length === 0 ? (
               <div className="text-center py-16 bg-white rounded-lg shadow-md">
                 <div className="mb-4 text-5xl">📋</div>
@@ -138,7 +132,6 @@ const LeaveHistory = () => {
   );
 };
 
-/* Stats Card Component */
 const StatCard = ({ title, value, color }) => {
   const colors = {
     blue: "border-blue-500 text-blue-600 bg-blue-50",

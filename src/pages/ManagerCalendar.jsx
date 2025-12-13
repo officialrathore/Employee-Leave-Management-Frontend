@@ -30,15 +30,14 @@ const ManagerCalendar = () => {
   const [error, setError] = useState(null);
 
   const getColor = (event) => {
-    if (event.status === "approved") return "#22C55E"; // green for approved
-    return "#6B7280"; // fallback color
+    if (event.status === "approved") return "#22C55E";
+    return "#6B7280";
   };
 
   useEffect(() => {
     const load = async () => {
       try {
         const data = await getManagerCalendar();
-        // Filter only approved leaves
         const formatted = data
           .filter((event) => event.status === "approved")
           .map((event) => ({
@@ -74,7 +73,6 @@ const ManagerCalendar = () => {
     },
   });
 
-  // Custom toolbar
   const CustomToolbar = ({ label }) => (
     <div className="flex flex-wrap justify-between mb-4 items-center gap-2">
       <div className="flex flex-wrap gap-2 mb-2 sm:mb-0">

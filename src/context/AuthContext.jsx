@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Load user from localStorage when app starts
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const token = localStorage.getItem("token");
@@ -23,17 +22,12 @@ export const AuthProvider = ({ children }) => {
       }
     }
 
-    // Set loading to false after user data is loaded
     setLoading(false);
   }, []);
 
-  /** LOGIN FUNCTION */
   const login = async (email, password) => {
     const response = await axios.post("/auth/login", { email, password });
-    // console.log("Login response:", response.data);
-
     const { user, token } = response.data;
-
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
@@ -43,7 +37,6 @@ export const AuthProvider = ({ children }) => {
     return response.data;
   };
 
-  /** SIGNUP FUNCTION */
   const signup = async (name, email, password, role) => {
     const response = await axios.post("/auth/signup", {
       name,
@@ -52,10 +45,9 @@ export const AuthProvider = ({ children }) => {
       role,
     });
 
-    return response.data; // FIXED
+    return response.data;
   };
 
-  /** LOGOUT FUNCTION */
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
@@ -71,4 +63,3 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
-

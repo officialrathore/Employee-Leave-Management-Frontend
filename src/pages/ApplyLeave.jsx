@@ -17,7 +17,6 @@ const ApplyLeave = () => {
   const [leaveBalance, setLeaveBalance] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // 🔹 fetch leave balance
   useEffect(() => {
     const fetchBalance = async () => {
       try {
@@ -30,7 +29,6 @@ const ApplyLeave = () => {
     fetchBalance();
   }, []);
 
-  // 🔹 calculate requested days
   const calculateDays = () => {
     if (!range.start || !range.end) return 0;
     const s = new Date(range.start);
@@ -58,10 +56,8 @@ const ApplyLeave = () => {
     }
 
     const requestedDays = calculateDays();
-    const available =
-      leaveBalance?.perType?.[leaveType]?.available ?? 0;
+    const available = leaveBalance?.perType?.[leaveType]?.available ?? 0;
 
-    // 🔥 MAIN CHECK
     if (requestedDays > available) {
       toast.error(
         `You only have ${available} ${leaveType} leave days available`
@@ -96,8 +92,6 @@ const ApplyLeave = () => {
         className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg"
       >
         <h2 className="text-2xl font-bold mb-6">Apply Leave</h2>
-
-        {/* Leave Type */}
         <label className="font-semibold">Leave Type</label>
         <select
           className="border p-2 w-full mb-2 rounded-lg"
@@ -113,7 +107,6 @@ const ApplyLeave = () => {
           ))}
         </select>
 
-        {/* Balance info */}
         {leaveType && leaveBalance && (
           <p className="text-sm text-gray-600 mb-3">
             Available:{" "}
@@ -123,11 +116,8 @@ const ApplyLeave = () => {
           </p>
         )}
 
-        {/* Calendar */}
         <label className="font-semibold">Select Date Range</label>
         <Calendar onRangeSelect={setRange} />
-
-        {/* Reason */}
         <label className="font-semibold mt-3 block">Reason</label>
         <textarea
           className="border p-2 w-full rounded-lg"
@@ -141,9 +131,7 @@ const ApplyLeave = () => {
           type="submit"
           disabled={loading || !leaveType || !range.start || !range.end}
           className={`w-full mt-6 py-3 rounded-lg text-white font-semibold ${
-            loading
-              ? "bg-gray-400"
-              : "bg-blue-600 hover:bg-blue-700"
+            loading ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
           }`}
         >
           {loading ? "Submitting..." : "Submit Leave"}

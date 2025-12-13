@@ -38,7 +38,6 @@ const ManagerDashboard = () => {
   return (
     <div className="w-full h-screen bg-gray-50 overflow-y-auto">
       <div className="p-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
             Manager Dashboard
@@ -54,9 +53,7 @@ const ManagerDashboard = () => {
           </div>
         ) : (
           <>
-            {/* Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {/* Pending */}
               <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
                 <div className="flex items-center justify-between">
                   <div>
@@ -71,7 +68,6 @@ const ManagerDashboard = () => {
                 </div>
               </div>
 
-              {/* Approved */}
               <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
                 <div className="flex items-center justify-between">
                   <div>
@@ -86,7 +82,6 @@ const ManagerDashboard = () => {
                 </div>
               </div>
 
-              {/* Rejected */}
               <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500">
                 <div className="flex items-center justify-between">
                   <div>
@@ -101,7 +96,6 @@ const ManagerDashboard = () => {
                 </div>
               </div>
 
-              {/* Employees */}
               <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
                 <div className="flex items-center justify-between">
                   <div>
@@ -117,7 +111,6 @@ const ManagerDashboard = () => {
               </div>
             </div>
 
-            {/* Quick Actions */}
             <div className="bg-white p-6 rounded-lg shadow-md mb-8">
               <h3 className="text-xl font-bold text-gray-800 mb-4">
                 Quick Actions
@@ -132,7 +125,6 @@ const ManagerDashboard = () => {
               </div>
             </div>
 
-            {/* Recent Leaves */}
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-bold text-gray-800 mb-4">
                 Recent Leave Requests

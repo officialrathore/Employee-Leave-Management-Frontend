@@ -1,6 +1,13 @@
-import { FaCalendarAlt,FaClock,
+import {
+  FaCalendarAlt,
+  FaClock,
   FaCheckCircle,
-  FaTimesCircle,FaHeartbeat, FaUmbrellaBeach, FaBriefcase, FaPlane  } from "react-icons/fa";
+  FaTimesCircle,
+  FaHeartbeat,
+  FaUmbrellaBeach,
+  FaBriefcase,
+  FaPlane,
+} from "react-icons/fa";
 
 const statusColors = {
   pending: "bg-yellow-100 text-yellow-700 border-yellow-300",
@@ -14,14 +21,12 @@ const statusIcons = {
   rejected: <FaTimesCircle className="text-red-600" />,
 };
 
-
 const leaveTypeIcon = {
   sick: <FaHeartbeat className="text-red-500 text-2xl" />,
   casual: <FaUmbrellaBeach className="text-yellow-500 text-2xl" />,
   paid: <FaBriefcase className="text-blue-500 text-2xl" />,
-  vacation: <FaPlane className="text-indigo-500 text-2xl" />
+  vacation: <FaPlane className="text-indigo-500 text-2xl" />,
 };
-
 
 const LeaveCard = ({ leave }) => {
   const startDate = new Date(leave.startDate);
@@ -32,15 +37,18 @@ const LeaveCard = ({ leave }) => {
 
   return (
     <div className="border border-gray-200 rounded-xl p-6 shadow-md bg-white hover:shadow-xl transition-all">
-
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div className="text-3xl">{leaveTypeIcon[leave.leaveType] ||  <FaCalendarAlt />}</div>
+          <div className="text-3xl">
+            {leaveTypeIcon[leave.leaveType] || <FaCalendarAlt />}
+          </div>
           <div>
             <h3 className="text-xl font-bold text-gray-800 capitalize">
               {leave.leaveType} Leave
             </h3>
-            <p className="text-sm text-gray-600">{days} day{days > 1 ? 's' : ''}</p>
+            <p className="text-sm text-gray-600">
+              {days} day{days > 1 ? "s" : ""}
+            </p>
           </div>
         </div>
 
@@ -54,21 +62,34 @@ const LeaveCard = ({ leave }) => {
         </span>
       </div>
 
-      {/* Date Range */}
       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg mb-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <FaCalendarAlt className="text-blue-600 text-lg" />
             <div>
               <p className="text-sm text-gray-600">From</p>
-              <p className="font-semibold text-gray-800">{startDate.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</p>
+              <p className="font-semibold text-gray-800">
+                {startDate.toLocaleDateString("en-US", {
+                  weekday: "short",
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </p>
             </div>
           </div>
           <div className="text-gray-400">→</div>
           <div className="flex items-center gap-3">
             <div className="text-right">
               <p className="text-sm text-gray-600">To</p>
-              <p className="font-semibold text-gray-800">{endDate.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</p>
+              <p className="font-semibold text-gray-800">
+                {endDate.toLocaleDateString("en-US", {
+                  weekday: "short",
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </p>
             </div>
             <FaClock className="text-indigo-600 text-lg" />
           </div>
@@ -90,15 +111,31 @@ const LeaveCard = ({ leave }) => {
             {leave.managerComment}
           </p>
         </div>
-      )}  
+      )}
 
       <div className="mt-4 pt-4 border-t border-gray-200">
         <div className="flex items-center gap-2 text-xs text-gray-500">
-          <span>Submitted on {new Date(leave.createdAt).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</span>
+          <span>
+            Submitted on{" "}
+            {new Date(leave.createdAt).toLocaleDateString("en-US", {
+              weekday: "short",
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </span>
           {leave.updatedAt && leave.updatedAt !== leave.createdAt && (
             <>
               <span>•</span>
-              <span>Updated on {new Date(leave.updatedAt).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</span>
+              <span>
+                Updated on{" "}
+                {new Date(leave.updatedAt).toLocaleDateString("en-US", {
+                  weekday: "short",
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </span>
             </>
           )}
         </div>

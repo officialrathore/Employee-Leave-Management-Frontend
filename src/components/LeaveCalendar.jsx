@@ -1,12 +1,25 @@
 import { useEffect, useState } from "react";
 import { getMyLeaves } from "../services/leaveService";
-import { format, parse, startOfWeek, getDay, addMonths, subMonths } from "date-fns";
+import {
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  addMonths,
+  subMonths,
+} from "date-fns";
 import enUS from "date-fns/locale/en-US";
 import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const locales = { "en-US": enUS };
-const localizer = dateFnsLocalizer({ format, parse, startOfWeek, getDay, locales });
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
+});
 
 const LeaveCalendar = () => {
   const [events, setEvents] = useState([]);
@@ -64,7 +77,6 @@ const LeaveCalendar = () => {
     },
   });
 
-  // Custom toolbar
   const CustomToolbar = ({ label }) => (
     <div className="flex flex-wrap justify-between mb-4 items-center gap-2">
       <div className="flex flex-wrap gap-2 mb-2 sm:mb-0">
@@ -91,25 +103,41 @@ const LeaveCalendar = () => {
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => setCurrentView("month")}
-          className={`p-2 rounded ${currentView === "month" ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"}`}
+          className={`p-2 rounded ${
+            currentView === "month"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
         >
           Month
         </button>
         <button
           onClick={() => setCurrentView("week")}
-          className={`p-2 rounded ${currentView === "week" ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"}`}
+          className={`p-2 rounded ${
+            currentView === "week"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
         >
           Week
         </button>
         <button
           onClick={() => setCurrentView("day")}
-          className={`p-2 rounded ${currentView === "day" ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"}`}
+          className={`p-2 rounded ${
+            currentView === "day"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
         >
           Day
         </button>
         <button
           onClick={() => setCurrentView("agenda")}
-          className={`p-2 rounded ${currentView === "agenda" ? "bg-blue-500 text-white" : "bg-gray-200 hover:bg-gray-300"}`}
+          className={`p-2 rounded ${
+            currentView === "agenda"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
         >
           Agenda
         </button>
@@ -124,12 +152,13 @@ const LeaveCalendar = () => {
       </div>
     );
 
-  if (error)
-    return <div className="p-4 text-center text-red-500">{error}</div>;
+  if (error) return <div className="p-4 text-center text-red-500">{error}</div>;
 
   return (
     <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg w-full overflow-x-auto">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-800">Leave Calendar</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-800">
+        Leave Calendar
+      </h2>
       <Calendar
         localizer={localizer}
         events={events}
