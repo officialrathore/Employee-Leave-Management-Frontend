@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Calendar from "../components/Calendar";
 import { applyLeave, getLeaveBalance } from "../services/leaveService";
 import { toast } from "react-toastify";
+import {  useNavigate} from "react-router-dom";
 
 const LEAVE_TYPES = [
   { value: "sick", label: "Sick Leave" },
@@ -16,6 +17,8 @@ const ApplyLeave = () => {
   const [reason, setReason] = useState("");
   const [leaveBalance, setLeaveBalance] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const navigate =  useNavigate();
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -76,7 +79,7 @@ const ApplyLeave = () => {
 
       toast.success("Leave requested successfully");
       setTimeout(() => {
-        window.location.href = "/employee/leave-history";
+        navigate("/employee/leave-history");
       }, 1500);
     } catch (error) {
       toast.error(error.response?.data?.message || error.message);
