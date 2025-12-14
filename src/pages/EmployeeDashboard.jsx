@@ -114,7 +114,7 @@ const EmployeeDashboard = () => {
               used={item.used}
               pending={item.pending}
               available={item.available}
-              colorClass={typeColors[item.type.toLowerCase() || "border-gray-400"]}
+              colorClass={typeColors[item.type.split(" ")[0].toLowerCase() || "border-gray-400"]}
             />
           ))}
         </div>
