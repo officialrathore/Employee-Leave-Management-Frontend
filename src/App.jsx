@@ -13,19 +13,21 @@ import LeaveCalendarPage from "./pages/LeaveCalendarPage";
 import ManagerDashboard from "./pages/ManagerDashboard";
 import ApproveRequests from "./pages/ApproveRequests";
 import ManagerCalendar from "./pages/ManagerCalendar";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-const RoleRoute = ({ children, allowed }) => {
-  const { user, loading } = useAuth();
 
-  if (loading) return <p className="text-center mt-20">Loading...</p>;
-  if (!user) return <Navigate to="/login" />;
+// const ProtectedRoute = ({ children, allowedRoles }) => {
+//   const { user, loading } = useAuth();
 
-  if (!allowed.includes(user.role)) {
-    return <Navigate to={`/${user.role}/dashboard`} />;
-  }
+//   if (loading) return <p className="text-center mt-20">Loading...</p>;
+//   if (!user) return <Navigate to="/login" />;
 
-  return children;
-};
+//   if (!allowedRoles.includes(user.role)) {
+//     return <Navigate to={`/${user.role}/dashboard`} />;
+//   }
+
+//   return children;
+// };
 
 const App = () => {
   const { user } = useAuth();
@@ -48,36 +50,36 @@ const App = () => {
           <Route
             path="/employee/dashboard"
             element={
-              <RoleRoute allowed={["employee"]}>
+              <ProtectedRoute allowedRoles={["employee"]}>
                 <EmployeeDashboard />
-              </RoleRoute>
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="/employee/apply-leave"
             element={
-              <RoleRoute allowed={["employee"]}>
+              <ProtectedRoute allowedRoles={["employee"]}>
                 <ApplyLeave />
-              </RoleRoute>
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="/employee/leave-history"
             element={
-              <RoleRoute allowed={["employee"]}>
+              <ProtectedRoute allowedRoles={["employee"]}>
                 <LeaveHistory />
-              </RoleRoute>
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="/employee/leave-calendar"
             element={
-              <RoleRoute allowed={["employee"]}>
+              <ProtectedRoute allowedRoles={["employee"]}>
                 <LeaveCalendarPage />
-              </RoleRoute>
+              </ProtectedRoute>
             }
           />
 
@@ -85,27 +87,27 @@ const App = () => {
           <Route
             path="/manager/dashboard"
             element={
-              <RoleRoute allowed={["manager"]}>
+              <ProtectedRoute allowedRoles={["manager"]}>
                 <ManagerDashboard />
-              </RoleRoute>
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="/manager/approve-requests"
             element={
-              <RoleRoute allowed={["manager"]}>
+              <ProtectedRoute allowedRoles={["manager"]}>
                 <ApproveRequests />
-              </RoleRoute>
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="/manager/leave-calendar"
             element={
-              <RoleRoute allowed={["manager"]}>
+              <ProtectedRoute allowedRoles={["manager"]}>
                 <ManagerCalendar />
-              </RoleRoute>
+              </ProtectedRoute>
             }
           />
 
