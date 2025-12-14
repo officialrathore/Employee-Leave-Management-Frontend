@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllLeaves, getAllEmployees } from "../services/managerService";
 import { FaCheckCircle, FaTimesCircle, FaClock, FaUsers } from "react-icons/fa";
+import StatCard from "../components/StatCard";
 
 const ManagerDashboard = () => {
   const [leaves, setLeaves] = useState([]);
@@ -54,61 +55,10 @@ const ManagerDashboard = () => {
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-600 text-sm font-semibold uppercase">
-                      Pending Requests
-                    </p>
-                    <p className="text-4xl font-bold text-yellow-600 mt-2">
-                      {pending}
-                    </p>
-                  </div>
-                  <FaClock className="text-yellow-500 text-4xl" />
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-600 text-sm font-semibold uppercase">
-                      Approved
-                    </p>
-                    <p className="text-4xl font-bold text-green-600 mt-2">
-                      {approved}
-                    </p>
-                  </div>
-                  <FaCheckCircle className="text-green-500 text-4xl" />
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-600 text-sm font-semibold uppercase">
-                      Rejected
-                    </p>
-                    <p className="text-4xl font-bold text-red-600 mt-2">
-                      {rejected}
-                    </p>
-                  </div>
-                  <FaTimesCircle className="text-red-500 text-4xl" />
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-600 text-sm font-semibold uppercase">
-                      Team Members
-                    </p>
-                    <p className="text-4xl font-bold text-blue-600 mt-2">
-                      {employeesCount}
-                    </p>
-                  </div>
-                  <FaUsers className="text-blue-500 text-4xl" />
-                </div>
-              </div>
+              <StatCard title="Pending" value={pending} color="yellow" icon={FaClock} />
+              <StatCard title="Approved" value={approved} color="green" icon={FaCheckCircle} />
+              <StatCard title="Rejected" value={rejected} color="red" icon={FaTimesCircle} />
+              <StatCard title="Team Members" value={employeesCount} color="blue" icon={FaUsers} />
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-md mb-8">

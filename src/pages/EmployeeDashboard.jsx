@@ -13,24 +13,9 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
+import StatCard from "../components/StatCard";
+import LeaveTypeCard from "../components/LeaveTypeCard";
 
-const Card = ({ title, value, color }) => {
-  const colors = {
-    blue: "border-blue-500 text-blue-600",
-    red: "border-red-500 text-red-600",
-    yellow: "border-yellow-500 text-yellow-600",
-    green: "border-green-500 text-green-600",
-  };
-
-  return (
-    <div
-      className={`bg-white p-4 sm:p-6 rounded-lg shadow-md border-l-4 ${colors[color]}`}
-    >
-      <h3 className="text-sm font-semibold text-gray-600 uppercase">{title}</h3>
-      <p className="text-3xl sm:text-4xl font-bold mt-1">{value}</p>
-    </div>
-  );
-};
 const EmployeeDashboard = () => {
   const [leaveBalance, setLeaveBalance] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -104,18 +89,18 @@ const EmployeeDashboard = () => {
           <p className="text-gray-600">Welcome to your employee dashboard</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <Card
+          <StatCard
             title="Total Leave"
             value={leaveBalance.totalDays}
             color="blue"
           />
-          <Card title="Used Leave" value={leaveBalance.usedDays} color="red" />
-          <Card
+          <StatCard title="Used Leave" value={leaveBalance.usedDays} color="red" />
+          <StatCard
             title="Pending"
             value={leaveBalance.pendingDays}
             color="yellow"
           />
-          <Card
+          <StatCard
             title="Available"
             value={leaveBalance.available}
             color="green"
@@ -123,33 +108,18 @@ const EmployeeDashboard = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {perType.map((item, index) => (
-            <div
+           <LeaveTypeCard
               key={index}
-              className={`bg-white p-5 rounded-lg shadow border-l-4 ${
-                typeColors[item.type.toLowerCase()] || "border-gray-500"
-              }`}
-            >
-              <h3 className="text-lg font-semibold text-gray-700 mb-3">
-                {item.type}
-              </h3>
-              <div className="flex justify-between text-sm font-medium">
-                <span className="text-red-600">Used:</span>
-                <span>{item.used}</span>
-              </div>
-              <div className="flex justify-between text-sm font-medium mt-1">
-                <span className="text-yellow-600">Pending:</span>
-                <span>{item.pending}</span>
-              </div>
-              <div className="flex justify-between text-sm font-medium mt-1">
-                <span className="text-green-600">Available:</span>
-                <span>{item.available}</span>
-              </div>
-            </div>
+              type={item.type}
+              used={item.used}
+              pending={item.pending}
+              available={item.available}
+              colorClass={typeColors[item.type.toLowerCase() || "border-gray-400"]}
+            />
           ))}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Pie Chart */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h4 className="text-lg font-semibold mb-4 text-gray-700">
               Overall Leave Overview
