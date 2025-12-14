@@ -86,9 +86,9 @@ const ApproveRequests = () => {
           <div className="space-y-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {requests.length > 0 ? (
               requests.map((leave) => (
-                <div>
+                <div  key={leave._id}>
                    <LeaveRequestCard
-    key={leave._id}
+   
     leave={leave}
     onAction={(id, action) =>
       setCommentModal({ show: true, leaveId: id, action })

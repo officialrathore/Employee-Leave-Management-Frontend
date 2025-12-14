@@ -24,7 +24,9 @@ const LeaveRequestCard = ({ leave, onAction }) => {
           </div>
 
           <span
-            className={`px-4 py-2 text-sm border rounded-full font-bold capitalize ${statusColors[leave.status]}`}
+            className={`px-4 py-2 text-sm border rounded-full font-bold capitalize ${
+              statusColors[leave.status]
+            }`}
           >
             {leave.status}
           </span>
@@ -61,11 +63,11 @@ const LeaveRequestCard = ({ leave, onAction }) => {
         </div>
       </div>
 
-      <div className="flex gap-20">
+      <div className="flex gap-4">
         <button
           disabled={leave.status !== "pending"}
           onClick={() => onAction(leave._id, "approve")}
-          className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-semibold ${
+          className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm sm:text-base font-semibold ${
             leave.status !== "pending"
               ? "bg-gray-300 cursor-not-allowed"
               : "bg-green-600 hover:bg-green-700 text-white"
@@ -77,7 +79,7 @@ const LeaveRequestCard = ({ leave, onAction }) => {
         <button
           disabled={leave.status !== "pending"}
           onClick={() => onAction(leave._id, "reject")}
-          className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-semibold ${
+          className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm sm:text-base font-semibold ${
             leave.status !== "pending"
               ? "bg-gray-300 cursor-not-allowed"
               : "bg-red-600 hover:bg-red-700 text-white"
