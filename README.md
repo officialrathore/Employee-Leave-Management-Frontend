@@ -131,12 +131,10 @@ frontend/
 │   ├── assets/.jsx             # Image assets
 │   ├── components/
 │   │   ├── Calendar.jsx         # Date range picker component
-│   │   ├── Layout.jsx          # Main layout wrapper
 │   │   ├── LeaveCalendar.jsx   # Personal calendar view
 │   │   ├── LeaveCard.jsx       # Leave request card component
 │   │   ├── LeaveRequestCard.jsx       # Leave request card component for manager
 │   │   ├── LeaveTypeCard.jsx   # Leave type card component
-│   │   ├── Navbar.jsx          # Top navigation bar
 │   │   ├── ProtectedRoute.jsx     # Protected route component
 │   │   ├── Sidebar.jsx     #  Responsive sidebar navigation
 │   │   └── StatCard.jsx         # Statistics card component
@@ -186,10 +184,6 @@ frontend/
 - **LeaveCalendar** - Interactive calendar with leave events
 - **ManagerCalendar** - Team-wide calendar view
 
-#### Layout Components
-- **Sidebar** - Responsive navigation with role-based menu items
-- **Navbar** - Top navigation with user actions
-- **Layout** - Main layout wrapper
 
 ### Design System
 
