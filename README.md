@@ -59,24 +59,20 @@ npm install
 
 ### Environment Setup
 
-Create environment files:
+Create environment files in the frontend root directory:
 
 ```bash
-# For development
-cp .env.example .env.local
+# Development environment
+echo "VITE_BASE_URL=http://localhost:5000/api" > .env.local
 
-# For production
-cp .env.example .env.production
+# Production environment
+echo "VITE_BASE_URL=https://leavehub-backend.onrender.com/api" > .env.production
 ```
 
-Edit the environment files with your API URLs:
-```env
-# Development
-VITE_BASE_URL=http://localhost:5000/api
-
-# Production
-VITE_BASE_URL=https://your-backend-api-url.com/api
-```
+### Environment Variables:
+- **VITE_BASE_URL**: Your backend API URL
+  - Development: `http://localhost:5000/api`
+  - Production: `https://your-backend.onrender.com/api`
 
 ### Development
 
@@ -93,9 +89,37 @@ The application will be available at `http://localhost:5173`
 # Create production build
 npm run build
 
-# Preview production build
+# Preview production build locally
 npm run preview
 ```
+
+## 🚀 Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. **Connect Repository**: Import your GitHub repository to Vercel
+2. **Configure Project**:
+   - **Framework Preset**: Vite
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+3. **Environment Variables**:
+   - `VITE_BASE_URL`: `https://your-backend.onrender.com/api`
+4. **Deploy**: Your app will be live instantly
+
+### Deploy to Netlify
+
+1. **Connect Repository**: Link your GitHub repository
+2. **Build Settings**:
+   - **Base directory**: `frontend`
+   - **Build command**: `npm run build`
+   - **Publish directory**: `dist`
+3. **Environment Variables**: Add `VITE_BASE_URL`
+4. **Deploy**: Automatic deployments on git push
+
+### Live Application
+- **Production**: [https://leavehub.vercel.app](https://leavehub.vercel.app)
+- **Development**: `http://localhost:5173`
 
 ## 📁 Project Structure
 
@@ -104,13 +128,18 @@ frontend/
 ├── public/
 │   └── vite.svg
 ├── src/
+│   ├── assets/.jsx             # Image assets
 │   ├── components/
 │   │   ├── Calendar.jsx         # Date range picker component
 │   │   ├── Layout.jsx          # Main layout wrapper
 │   │   ├── LeaveCalendar.jsx   # Personal calendar view
 │   │   ├── LeaveCard.jsx       # Leave request card component
+│   │   ├── LeaveRequestCard.jsx       # Leave request card component for manager
+│   │   ├── LeaveTypeCard.jsx   # Leave type card component
 │   │   ├── Navbar.jsx          # Top navigation bar
-│   │   └── Sidebar.jsx         # Responsive sidebar navigation
+│   │   ├── ProtectedRoute.jsx     # Protected route component
+│   │   ├── Sidebar.jsx     #  Responsive sidebar navigation
+│   │   └── StatCard.jsx         # Statistics card component
 │   ├── context/
 │   │   └── AuthContext.jsx     # Authentication state management
 │   ├── pages/
