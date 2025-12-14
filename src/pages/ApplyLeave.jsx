@@ -86,7 +86,7 @@ const ApplyLeave = () => {
   };
 
   return (
-    <div className="w-full h-screen bg-gray-50 flex items-center justify-center">
+    <div className="w-full h-screen bg-gray-50 flex items-center justify-center px-5">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg"
@@ -122,6 +122,7 @@ const ApplyLeave = () => {
         <textarea
           className="border p-2 w-full rounded-lg"
           rows="3"
+          placeholder="Enter your reason..."
           value={reason}
           onChange={(e) => setReason(e.target.value)}
           required
