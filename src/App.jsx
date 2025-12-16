@@ -22,17 +22,15 @@ const App = () => {
     <div className="flex">
       <ToastContainer position="top-right" autoClose={3000} pauseOnHover />
 
-      {/* SHOW SIDEBAR ONLY IF USER LOGGED IN */}
       {user && <Sidebar />}
 
       <main className="flex-1 w-full">
         <Routes>
 
-          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
 
-          {/* Employee Routes */}
+
           <Route
             path="/employee/dashboard"
             element={
@@ -69,7 +67,6 @@ const App = () => {
             }
           />
 
-          {/* Manager Routes */}
           <Route
             path="/manager/dashboard"
             element={
@@ -97,7 +94,6 @@ const App = () => {
             }
           />
 
-          {/* Auto Redirect based on ROLE */}
           <Route
             path="/"
             element={
@@ -107,7 +103,6 @@ const App = () => {
             }
           />
 
-          {/* Wrong URL → go to relevant dashboard */}
           <Route
             path="*"
             element={
