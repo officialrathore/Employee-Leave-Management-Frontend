@@ -118,7 +118,7 @@ npm run preview
 4. **Deploy**: Automatic deployments on git push
 
 ### Live Application
-- **Production**: [[https://leavehub.vercel.app](https://employee-leave-management-frontend-azure.vercel.app/)]([https://leavehub.vercel.app](https://employee-leave-management-frontend-azure.vercel.app/))
+- **Production**: [https://employee-leave-management-frontend-azure.vercel.app/]
 - **Development**: `http://localhost:5173`
 
 ## 📁 Project Structure
