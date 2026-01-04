@@ -97,8 +97,17 @@ const Sidebar = () => {
       icon: <FaCalendarAlt />,
     },
   ];
+  const adminLinks = [
+    {
+      name: "Dashboard",
+      path: "/admin/dashboard",
+      icon: <FaTachometerAlt />,
+    },
 
-  const links = user?.role === "manager" ? managerLinks : employeeLinks;
+  ];  
+  
+  const links = user?.role === "employee" ? employeeLinks : user?.role === "manager"? managerLinks : adminLinks;
+
 
   return (
     <>

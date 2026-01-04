@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllLeaves, updateLeave } from "../services/managerService";
 import { toast } from "react-toastify";
 import LeaveRequestCard from "../components/LeaveRequestCard";
+import { FaFilter } from "react-icons/fa";
 
 
 const ApproveRequests = () => {
@@ -15,6 +16,8 @@ const ApproveRequests = () => {
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [error, setError] = useState(null);
+    const [filterStatus, setFilterStatus] = useState("all");
+    const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const loadData = async () => {
@@ -62,6 +65,18 @@ const ApproveRequests = () => {
     }
   };
 
+  
+  const filteredLeaves= requests.filter((leave) => {
+    const matchesStatus =
+      filterStatus === "all" || leave.status === filterStatus;
+    const matchesSearch =
+      leave.leaveType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      new Date(leave.startDate)
+        .toLocaleDateString("en-IN")
+        .includes(searchTerm);
+    return matchesStatus && matchesSearch;
+  });
+
   return (
     <div className="w-full h-screen bg-gray-50 overflow-y-auto">
       <div className="p-8">
@@ -74,7 +89,35 @@ const ApproveRequests = () => {
           </p>
         </div>
 
-        {initialLoading ? (
+                  <div className="bg-white p-6 rounded-lg shadow-md mb-8">
+                     <div className="flex flex-col sm:flex-row gap-4">
+                       <div className="flex-1">
+                         <input
+                           type="text"
+                           placeholder="Search by leave type or date..."
+                           value={searchTerm}
+                           onChange={(e) => setSearchTerm(e.target.value)}
+                           className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                         />
+                       </div>
+       
+                       <div className="flex items-center gap-2">
+                         <FaFilter className="text-gray-600" />
+                         <select
+                           value={filterStatus}
+                           onChange={(e) => setFilterStatus(e.target.value)}
+                           className="border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                         >
+                           <option value="all">All Status</option>
+                           <option value="pending">Pending</option>
+                           <option value="approved">Approved</option>
+                           <option value="rejected">Rejected</option>
+                         </select>
+                       </div>
+                     </div>
+                   </div>
+
+        {initialLoading && filteredLeaves.length === 0 ? (
           <div className="flex justify-center items-center h-64">
             <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-500"></div>
           </div>
@@ -85,7 +128,7 @@ const ApproveRequests = () => {
         ) : (
           <div className="space-y-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {requests.length > 0 ? (
-              requests.map((leave) => (
+              filteredLeaves.map((leave) => (
                 <div  key={leave._id}>
                    <LeaveRequestCard
    

@@ -53,10 +53,18 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     delete axios.defaults.headers.common["Authorization"];
+  }
+
+  const setUserFromExternal = (user, token) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   };
 
+
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, signup, logout, setUserFromExternal, loading }}>
       {children}
     </AuthContext.Provider>
   );
