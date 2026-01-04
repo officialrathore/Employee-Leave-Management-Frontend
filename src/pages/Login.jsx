@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
-import axios from "../services/axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -31,6 +30,7 @@ const Login = () => {
         }
         toast.success("Login successful!");
       } catch (err) {
+        console.error(err);
         toast.error("Login failed");
       }
     } else if (errorParam) {
